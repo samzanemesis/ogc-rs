@@ -85,7 +85,6 @@ fn main() {
         ))
         .clang_arg(format!("-I{}/libogc/include", dkp_path))
         .clang_arg("-mfloat-abi=hard")
-        .clang_arg("-nostdinc")
         .clang_arg("-Wno-macro-redefined")
         .clang_arg("-Wno-incompatible-library-redeclaration")
         .clang_arg("-DHW_RVL")
