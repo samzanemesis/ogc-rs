@@ -11,10 +11,10 @@
     "linker": "powerpc-eabi-gcc",
     "linker-flavor": "gcc",
     "linker-is-gnu": true,
-    "os": "rvl-ios",
+    "os": "dolphin",
     "pre-link-args": {
         "gcc": [
-            "-mrvl",
+            "-mogc",
             "-meabi",
             "-mhard-float"
         ]
