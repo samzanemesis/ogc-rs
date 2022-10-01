@@ -87,7 +87,7 @@ fn main() {
         .clang_arg("-mfloat-abi=hard")
         .clang_arg("-Wno-macro-redefined")
         .clang_arg("-Wno-incompatible-library-redeclaration")
-        .clang_arg("-DHW_RVL")
+        .clang_arg("-DHW_DOL")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate bindings");

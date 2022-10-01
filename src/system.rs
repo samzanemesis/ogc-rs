@@ -250,76 +250,6 @@ impl System {
         unsafe { ffi::SYS_GetFontEncoding() }
     }
 
-    /// Get Arena 1 Lo
-    pub fn get_arena_1_lo() -> *mut c_void {
-        unsafe { ffi::SYS_GetArena1Lo() }
-    }
-
-    /// Set Arena 1 Lo
-    ///
-    /// # Safety
-    ///
-    /// The user must ensure this point into the memory is valid and the arena doesn't go out
-    /// memory
-    pub unsafe fn set_arena_1_lo(new_lo: *mut c_void) {
-        ffi::SYS_SetArena1Lo(new_lo)
-    }
-
-    /// Get Arena 1 Hi
-    pub fn get_arena_1_hi() -> *mut c_void {
-        unsafe { ffi::SYS_GetArena1Hi() }
-    }
-
-    /// Set Arena 1 Hi
-    ///
-    /// # Safety
-    ///
-    /// The user must ensure this point into the memory is valid and the arena doesn't go out
-    /// memory
-    pub unsafe fn set_arena_1_hi(new_hi: *mut c_void) {
-        ffi::SYS_SetArena1Hi(new_hi)
-    }
-
-    /// Get Arena 1 Size
-    pub fn get_arena_1_size() -> u32 {
-        unsafe { ffi::SYS_GetArena1Size() }
-    }
-
-    /// Get Arena 2 Lo
-    pub fn get_arena_2_lo() -> *mut c_void {
-        unsafe { ffi::SYS_GetArena2Lo() }
-    }
-
-    /// Set Arena 2 Lo
-    ///
-    /// # Safety
-    ///
-    /// The user must ensure this point into the memory is valid and the arena doesn't go out
-    /// memory
-    pub unsafe fn set_arena_2_lo(new_lo: *mut c_void) {
-        ffi::SYS_SetArena2Lo(new_lo)
-    }
-
-    /// Get Arena 2 Hi
-    pub fn get_arena_2_hi() -> *mut c_void {
-        unsafe { ffi::SYS_GetArena2Hi() }
-    }
-
-    /// Set Arena 2 Hi
-    ///
-    /// # Safety
-    ///
-    /// The user must ensure this point into the memory is valid and the arena doesn't go out
-    /// memory
-    pub unsafe fn set_arena_2_hi(new_hi: *mut c_void) {
-        ffi::SYS_SetArena2Hi(new_hi)
-    }
-
-    /// Get Arena 2 Size
-    pub fn get_arena_2_size() -> u32 {
-        unsafe { ffi::SYS_GetArena2Size() }
-    }
-
     /// Set Wireless ID
     pub fn set_wireless_id(channel: u32, id: u16) {
         unsafe {
@@ -367,35 +297,6 @@ impl System {
         }
     }
 
-    /// Reset Button Down
-    pub fn reset_button_down() -> u32 {
-        unsafe { ffi::SYS_ResetButtonDown() }
-    }
-
-    /// Set Reset Callback
-    pub fn set_reset_callback<F>(callback: Box<F>) {
-        // TODO: Check if this implementation can be changed.
-        let ptr = Box::into_raw(callback);
-
-        unsafe {
-            let code: extern "C" fn(irq: u32, ctx: *mut c_void) = mem::transmute(ptr);
-            // TODO: Do something with the returned callback.
-            let _ = ffi::SYS_SetResetCallback(Some(code));
-        }
-    }
-
-    /// Set Power Callback
-    pub fn set_power_callback<F>(callback: Box<F>) {
-        // TODO: Check if this implementation can be changed.
-        let ptr = Box::into_raw(callback);
-
-        unsafe {
-            let code: extern "C" fn() = mem::transmute(ptr);
-            // TODO: Do something with the returned callback.
-            let _ = ffi::SYS_SetPowerCallback(Some(code));
-        }
-    }
-
     /// Protect Range
     pub fn protect_range(
         channel: MemoryProtectChannels,
@@ -418,11 +319,6 @@ impl System {
         unsafe {
             ffi::SYS_SwitchFiber(arg0, arg1, arg2, arg3, pc, newsp);
         }
-    }
-
-    /// Get Hollywood Revision
-    pub fn get_hollywood_revision() -> u32 {
-        unsafe { ffi::SYS_GetHollywoodRevision() }
     }
 
     /// Get system time.
